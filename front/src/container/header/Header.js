@@ -1,12 +1,31 @@
-import Header1 from "../../container/header/Header1";
-import Header2 from "../../container/header/Header2";
+import React, { useState, useEffect } from 'react';
 
 import styles from "./Header.module.css";
+
 function Header() {
-    return (  
+    const [isHidden, setIsHidden] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            setIsHidden(scrollY > 0);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    return (
         <div className={styles.container}>
-            <Header1 />
-            <Header2 />
+            <div className={`${isHidden ? styles.hiddenHeader : styles.header1}`}>
+                header1
+            </div>
+            <div className={styles.header2}>
+                header2
+            </div>
         </div>
     );
 }

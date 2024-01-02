@@ -1,2 +1,23 @@
 .container {
+    position: relative;
+}
+
+.header1 {
+    transition: transform 0.2s ease-out;
+    transform: translateY(0);
+    /* background-color: aqua; */
+    height : 40px;
+}
+
+.hiddenHeader {
+    transform: translateY(-100%);
+    visibility: hidden;
+    height:0;
+
+}
+
+.header2 {
+    padding-top:40px;
+    background-color: aquamarine;
+    height:120px;
 }
