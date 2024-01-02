@@ -1,6 +1,10 @@
+import styles from "./Header1.module.css";
+
 function Header1() {
     return (  
-        <div>header1</div>
+        <div className={styles.container}>
+            header1
+        </div>
     );
 }
 

@@ -1,7 +1,9 @@
+import styles from "./Header2.module.css";
+
 function Header2() {
     return (  
-        <div>
-            header2
+        <div className={styles.container}>
+            header1
         </div>
     );
 }

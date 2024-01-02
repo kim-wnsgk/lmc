@@ -1,3 +1,23 @@
+* {
+    margin:0;
+}
+
 .container {
-    
+    max-width: 1180px;
+    background-color: rgb(166, 213, 255);
+    height:100000px;
+    margin: 0 auto;
+}
+
+.header {
+    position: fixed;
+    width:1180px;  /* 나중에 수정 */
+    top:0;
+    height:160px;
+    background-color: beige;
+}
+
+.content {
+    margin-top: 200px;
+    width:100%;
 }

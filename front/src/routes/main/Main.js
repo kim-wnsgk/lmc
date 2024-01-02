@@ -1,13 +1,18 @@
+import Header from "../../container/header/Header";
+import ImageBox from "../../container/main/ImageBox";
 import styles from "./Main.module.css";
 
-import Header1 from "../../container/header/Header1";
-import Header2 from "../../container/header/Header2";
+
 
 function Main() {
     return (  
         <div className={styles.container}>
-            <Header1 />
-            <Header2 />
+            <div className={styles.header}>
+                <Header/>
+            </div>
+            <div className={styles.content}>
+                <ImageBox />
+            </div>
         </div>
     );
 }
