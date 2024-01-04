@@ -10,7 +10,7 @@
 }
 
 .header {
-  /* position: fixed; */
+  position: fixed;
   width: 1180px; /* 나중에 수정 */
   top: 0;
   height: 160px;
