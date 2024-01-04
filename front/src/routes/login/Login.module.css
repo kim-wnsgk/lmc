@@ -4,7 +4,6 @@
 
 .container {
   max-width: 1180px;
-  background-color: rgb(166, 213, 255);
   height: 960px;
   margin: 0 auto;
 }
@@ -18,15 +17,15 @@
 }
 
 .content {
-  margin-top: 200px;
   width: 100%;
   height: 800px;
+  margin-top: 360px;
 }
 
 .logInBox {
-  border: solid 4px black;
+  border: solid 3px black;
   height: 450px;
-  width: 380px;
+  width: 360px;
   margin: -100px auto;
   display: flex;
   flex-direction: column;
@@ -39,8 +38,7 @@
 .loginInputBox {
   display: flex;
   flex-direction: column;
-  margin-top: 270px;
-  border: solid 2px black;
+  margin-top: 165px;
 }
 
 .emailInput input {
@@ -49,6 +47,7 @@
   border-radius: 6px 6px 0 0;
   padding: 5px;
   padding-left: 30px;
+  z-index: 1;
 }
 
 .passwordBox img {
@@ -56,7 +55,7 @@
   top: 82.5%;
   left: 3%;
   transform: translateY(-50%);
-  margin-right: 5px; /* 필요에 따라 조절하세요 */
+  margin-right: 5px;
   z-index: 2;
 }
 .passwordInput {
@@ -70,4 +69,40 @@
   padding: 5px;
   padding-left: 30px;
   z-index: 1;
+}
+
+.loginButtonBox {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loginButton {
+  width: 100%;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 6px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+}
+.buttons button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  color: #a4a4a4;
+}
+.buttons button:hover {
+  color: black;
+}
+.middleButton {
+  margin-left: 10px;
+  margin-right: 10px;
 }
