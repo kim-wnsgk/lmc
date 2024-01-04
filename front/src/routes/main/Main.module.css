@@ -4,20 +4,22 @@
 
 .container {
     max-width: 1180px;
-    background-color: rgb(166, 213, 255);
+    /* background-color: rgb(166, 213, 255); */
     height:1000px;
     margin: 0 auto;
 }
 
 .header {
     position: fixed;
-    width:1180px;  /* 나중에 수정 */
+    width:1180px;
     top:0;
     height:160px;
-    background-color: beige;
+    background-color: white;
+    z-index: 10;
 }
 
 .content {
     margin-top: 200px;
     width:100%;
 }
+

@@ -5,19 +5,65 @@
 .header1 {
     transition: transform 0.2s ease-out;
     transform: translateY(0);
-    /* background-color: aqua; */
     height : 40px;
+    line-height: 40px;
 }
 
-.hiddenHeader {
+.hiddenHeader1 {
     transform: translateY(-100%);
-    visibility: hidden;
-    height:0;
 
 }
 
 .header2 {
+    transition: transform 0.2s ease-out;
     padding-top:40px;
-    background-color: aquamarine;
     height:120px;
+}
+
+.hiddenHeader2 {
+    transform: translateY(-40px);
+}
+
+.buttonBox {
+    display: flex;
+    justify-content: space-between;
+    margin:0 5px;
+    font-size: 1.1rem;
+    color:#888888;
+}
+
+.buttons {
+    display: flex;
+}
+
+.button {
+    margin:0 5px;
+    cursor: pointer;
+    &:hover {
+        color:black;
+    }
+}
+
+.first {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 3rem;
+}
+
+.search {
+    width:600px;
+    height : 50px;
+    display: flex;
+
+    & .input {
+        width:100%;
+    }
+}
+
+.buttons2 {
+    width:200px;
+    background-color: #888888;
 }
