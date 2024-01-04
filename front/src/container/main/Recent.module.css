@@ -1,0 +1,20 @@
+.container {
+    margin:5px;
+}
+
+.title {
+    font-size:2rem;
+}
+
+.product {
+    display: flex;
+    overflow-x:auto;
+}
+
+.box {
+    background-color: white;
+    margin:5px;
+    width:200px;
+    height:200px;
+    flex-shrink: 0;
+}
