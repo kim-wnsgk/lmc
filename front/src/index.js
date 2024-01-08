@@ -6,6 +6,7 @@ import Main from "./routes/main/Main";
 import Login from "./routes/login/Login";
 import SignIn from "./routes/login/SignIn";
 import ErrorPage from "./routes/ErrorPage";
+import ProductMain from "./routes/product/ProductMain";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
   {
     path: "/SignIn",
     element: <SignIn />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/productmain",
+    element: <ProductMain />,
     errorElement: <ErrorPage />,
   },
 ]);
