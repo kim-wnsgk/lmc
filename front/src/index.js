@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./routes/main/Main";
 import Login from "./routes/login/Login";
 import SignIn from "./routes/login/SignIn";
+import Write from "./routes/write/Write";
 import ErrorPage from "./routes/ErrorPage";
 import ProductMain from "./routes/product/ProductMain";
 
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
   {
     path: "/productmain",
     element: <ProductMain />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/write",
+    element: <Write />,
     errorElement: <ErrorPage />,
   },
 ]);
