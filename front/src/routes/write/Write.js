@@ -113,6 +113,86 @@ function Write() {
     setImages((prevImages) => [...prevImages, newImage]);
   };
   /* 이미지 관련 */
+
+  /* input 값 관련 */
+  const [productName, setProductName] = useState("");
+  const [price, setPrice] = useState("");
+  const [itemDescription, setItemDescription] = useState("");
+  const [category, setCategory] = useState("");
+
+  const handleProductNameChange = (event) => {
+    setProductName(event.target.value);
+  };
+
+  const handlePriceChange = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const handleItemDescriptionChange = (event) => {
+    setItemDescription(event.target.value);
+  };
+  /* input 값 관련 */
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+  const submitForm = () => {
+    // 백엔드로 보낼 데이터 준비
+    const formData = {
+      type: checkSale ? "판매" : "나눔",
+      state: stateNew
+        ? "새상품"
+        : state1
+        ? "사용감 적음"
+        : state2
+        ? "사용감 있음"
+        : "사용감 많음",
+      method: direct ? "직거래" : parcel ? "택배" : "",
+      productName,
+      itemDescription,
+      category,
+      images, // 이미지 정보가 담긴 객체 배열로 가정
+    };
+
+    // 만약 판매인 경우에는 가격을 formData에 추가
+    if (checkSale) {
+      formData.price = price;
+    }
+
+    console.log(formData);
+
+    // fetch나 다른 HTTP 라이브러리를 사용하여 데이터를 백엔드로 전송
+    fetch("/write/write", {
+      method: "POST", // 필요에 따라 "GET" 또는 "POST" 사용
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // 백엔드로부터의 응답 처리, 필요시
+        console.log("성공:", data);
+      })
+      .catch((error) => {
+        console.error("에러:", error);
+      });
+  };
+
+  const isFormValid = () => {
+    if (
+      (checkSale || checkSharing) &&
+      (stateNew || state1 || state2 || state3) &&
+      (direct || parcel) &&
+      productName.trim() !== "" &&
+      (!checkSale || (checkSale && price.trim() !== "")) &&
+      itemDescription.trim() !== ""
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -137,16 +217,34 @@ function Write() {
             </div>
           </div>
           <div className={styles.title}>
-            <input placeholder="상품명을 입력해주세요."></input>
+            <input
+              placeholder="상품명을 입력해주세요."
+              value={productName}
+              onChange={handleProductNameChange}
+            />
           </div>
           {checkSharing ? null : (
             <div className={styles.price}>
-              <input placeholder="가격을 입력해주세요."></input>
+              <input
+                type="number" // 숫자만 입력 가능하도록 설정
+                placeholder="가격을 입력해주세요."
+                value={price}
+                onInput={handlePriceChange}
+              />
+              {price !== "" && (
+                <span style={{ marginLeft: "5px" }}>
+                  {parseInt(price, 10).toLocaleString()} 원
+                </span>
+              )}
             </div>
           )}
 
           <div className={styles.itemEx}>
-            <input placeholder="상품에 대해 설명해주세요."></input>
+            <input
+              placeholder="상품에 대해 설명해주세요."
+              value={itemDescription}
+              onChange={handleItemDescriptionChange}
+            />
           </div>
           <div className={styles.image}>
             <div className={styles.eachImage} onClick={handleImageClick}>
@@ -171,7 +269,10 @@ function Write() {
           </div>
           <div>이미지는 최대 4장까지 업로드 할 수 있습니다.</div>
           <div className={styles.category}>
-            여기는 카테고리를 선택할 수 있는 칸
+            <select onChange={handleCategoryChange} value={category}>
+              <option value="">카테고리를 선택하세요</option>
+              {/* Add your category options here */}
+            </select>
           </div>
 
           <div className={styles.state}>
@@ -202,20 +303,26 @@ function Write() {
           </div>
           <div className={styles.tradeMethod}>
             <div
-              className={`${styles.checkSharing} ${
-                checkSharing && styles.active
-              }`}
-              onClick={toggleCheckSharingState}
+              className={`${styles.checkSharing} ${parcel && styles.active}`}
+              onClick={toggleParcelState}
             >
               택배
             </div>
             <div
-              className={`${styles.checkSale} ${checkSale && styles.active}`}
-              onClick={toggleCheckSaleState}
+              className={`${styles.checkSale} ${direct && styles.active}`}
+              onClick={toggleDirectState}
             >
               직거래
             </div>
           </div>
+          <button onClick={submitForm} disabled={!isFormValid()}>
+            글 작성
+          </button>
+          {!isFormValid() && (
+            <div className={styles.validationMessage}>
+              이미지를 제외한 모든 항목을 입력해주세요.
+            </div>
+          )}
         </div>
       </div>
     </div>
